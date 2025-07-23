@@ -1,141 +1,100 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 40 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: 'easeOut' } },
-};
-
-const stagger = {
-  visible: { transition: { staggerChildren: 0.12 } },
-};
 
 const FAQ = () => {
-  const [openIndex, setOpenIndex] = useState(0);
+  const [openIndex, setOpenIndex] = useState(null);
 
   const faqs = [
     {
-      question: "How much does a website development project cost?",
-      answer: "Our website development costs vary based on complexity and requirements. Business websites start at $2,999, e-commerce solutions at $4,999, and portfolio sites at $1,999. We provide detailed quotes after understanding your specific needs during our free consultation."
+      question: "What digital marketing services do you offer?",
+      answer: "We offer a comprehensive suite of digital marketing services including Search Engine Optimization (SEO), Pay-Per-Click Advertising (PPC), Social Media Marketing, Content Marketing, Email Marketing, and Analytics & Reporting. Each service can be customized to meet your specific business goals and target audience."
     },
     {
-      question: "How long does it take to build a website?",
-      answer: "Timeline depends on the project scope. A basic business website typically takes 4-6 weeks, while complex e-commerce sites may take 8-12 weeks. We provide a detailed timeline during the planning phase and keep you updated throughout the process."
+      question: "How long does it take to see results from digital marketing?",
+      answer: "Results vary by channel. PPC and Social Media Ads can generate immediate traffic, while SEO typically takes 3-6 months for significant results. Content Marketing usually shows impact within 2-3 months. We provide regular reports to track progress across all channels and continuously optimize for better performance."
     },
     {
-      question: "Do you provide website maintenance and support?",
-      answer: "Yes! We offer ongoing maintenance packages that include security updates, content updates, performance monitoring, and technical support. Our team is available 24/7 to ensure your website runs smoothly."
+      question: "How much should I budget for digital marketing?",
+      answer: "Your budget depends on your goals, market competition, and chosen channels. While our packages start at $999/month, we recommend allocating at least 5-10% of your revenue to digital marketing. We'll help you distribute your budget across channels for maximum ROI."
     },
     {
-      question: "Will my website be mobile-friendly and responsive?",
-      answer: "Absolutely! Every website we build is mobile-first and fully responsive. We ensure your site looks and functions perfectly on all devices - smartphones, tablets, and desktop computers."
+      question: "Do you offer customized marketing strategies?",
+      answer: "Yes, we create tailored strategies based on your industry, goals, target audience, and budget. Our team analyzes your current performance, competitors, and market opportunities to develop a custom plan that combines the most effective channels for your business."
     },
     {
-      question: "Do you help with SEO and digital marketing?",
-      answer: "Yes, we build SEO best practices into every website. This includes optimized code, fast loading speeds, proper meta tags, and structured data. We also offer additional SEO and digital marketing services to help grow your online presence."
+      question: "How do you measure and report results?",
+      answer: "We track key performance indicators (KPIs) specific to each channel, such as traffic, conversions, ROI, engagement rates, and revenue. You'll receive comprehensive monthly reports with detailed analytics and insights, plus access to a real-time dashboard to monitor performance."
     },
     {
-      question: "Can you redesign my existing website?",
-      answer: "Definitely! We specialize in website redesigns that improve user experience, modernize design, and boost conversions. We can work with your existing content or help create new content that better serves your goals."
+      question: "What makes your digital marketing services different?",
+      answer: "We stand out through our data-driven approach, transparent reporting, and focus on ROI. Our team stays updated with the latest digital marketing trends and tools, and we provide dedicated account managers for personalized service. We also offer flexible packages that can be adjusted based on your evolving needs."
     },
     {
-      question: "What if I need changes after the website is launched?",
-      answer: "We include a revision period after launch for minor adjustments. For ongoing changes, we offer flexible maintenance packages or project-based updates. We're here to help your website evolve with your business."
+      question: "Can you work with my existing marketing efforts?",
+      answer: "Absolutely! We can integrate with your current marketing initiatives and team. Whether you need us to complement your in-house efforts or take full control of your digital marketing, we'll create a collaborative approach that maximizes results while maintaining brand consistency."
     },
     {
-      question: "Do you work with businesses outside the United States?",
-      answer: "While we primarily serve US businesses, we do work with international clients. Our team is experienced in different markets and can adapt our approach to meet various regional requirements and preferences."
+      question: "What industries do you specialize in?",
+      answer: "We have experience across various industries including E-commerce, B2B, Technology, Healthcare, Real Estate, and Professional Services. Our diverse expertise allows us to apply proven strategies while understanding the unique challenges and opportunities in your specific industry."
     }
   ];
 
   return (
-    <motion.section
-      className="py-8 md:py-16 lg:py-20 bg-white"
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.2 }}
-      variants={fadeInUp}
-    >
-      <div className="container-custom">
-        <motion.div className="text-center mb-16" variants={fadeInUp}>
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">
+    <div className="py-16 bg-gray-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center">
+          <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
             Frequently Asked Questions
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Got questions? We've got answers. Here are the most common questions 
-            we get from businesses looking to build their web presence.
+          <p className="mt-4 max-w-2xl mx-auto text-xl text-gray-500">
+            Everything you need to know about our digital marketing services
           </p>
-        </motion.div>
+        </div>
 
-        <motion.div className="max-w-3xl mx-auto" variants={stagger}>
+        <div className="mt-12 max-w-3xl mx-auto divide-y divide-gray-200">
           {faqs.map((faq, index) => (
-            <motion.div key={index} className="mb-4" variants={fadeInUp}>
-              <motion.button
-                className={`w-full text-left p-6 rounded-lg transition-colors flex flex-col items-start focus:outline-none ${
-                  openIndex === index 
-                    ? 'bg-primary-50 border-2 border-primary-200' 
-                    : 'bg-gray-50 hover:bg-gray-100'
-                }`}
-                onClick={() => setOpenIndex(openIndex === index ? -1 : index)}
-                whileTap={{ scale: 0.98 }}
+            <div key={index} className="py-6">
+              <button
+                className="text-left w-full flex justify-between items-start"
+                onClick={() => setOpenIndex(openIndex === index ? null : index)}
               >
-                <div className="flex items-center justify-between w-full">
-                  <h3 className="text-lg font-semibold text-gray-900 pr-4">
-                    {faq.question}
-                  </h3>
-                  <motion.svg
-                    className={`w-6 h-6 text-primary-500 transition-transform ${openIndex === index ? 'rotate-180' : ''}`}
+                <h3 className="text-lg font-medium text-gray-900">
+                  {faq.question}
+                </h3>
+                <span className="ml-6 flex-shrink-0">
+                  <svg
+                    className={`h-6 w-6 transform ${openIndex === index ? 'rotate-180' : ''} text-indigo-500`}
+                    xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
-                    initial={false}
-                    animate={{ rotate: openIndex === index ? 180 : 0 }}
-                    transition={{ duration: 0.3 }}
+                    aria-hidden="true"
                   >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M19 9l-7 7-7-7"
-                    />
-                  </motion.svg>
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </span>
+              </button>
+              {openIndex === index && (
+                <div className="mt-4 pr-12">
+                  <p className="text-base text-gray-500">
+                    {faq.answer}
+                  </p>
                 </div>
-                <AnimatePresence initial={false}>
-                  {openIndex === index && (
-                    <motion.div
-                      className="mt-4 text-gray-600 leading-relaxed"
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: 'auto' }}
-                      exit={{ opacity: 0, height: 0 }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      {faq.answer}
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </motion.button>
-            </motion.div>
+              )}
+            </div>
           ))}
-        </motion.div>
+        </div>
 
-        {/* Still Have Questions CTA */}
-        <motion.div className="text-center mt-12 p-8 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-2xl text-white" variants={fadeInUp}>
-          <h3 className="text-2xl font-bold mb-4 text-black">Still Have Questions?</h3>
-          <p className="mb-6 text-blue-500">
-            Our team is here to help! Schedule a free consultation to discuss your project.
+        <div className="mt-10 text-center">
+          <p className="text-base text-gray-500">
+            Still have questions?{' '}
+            <a href="#contact" className="font-medium text-indigo-600 hover:text-indigo-500">
+              Contact our team
+            </a>
           </p>
-          <motion.a
-            href="#contact"
-            className=" text-primary-600 px-8 py-3 rounded-lg font-semibold bg-gray-100 transition-colors text-blue-500 text-2xl"
-            whileTap={{ scale: 0.97 }}
-            whileHover={{ scale: 1.08 }}
-          >
-            Get Free Consultation
-          </motion.a>
-        </motion.div>
+        </div>
       </div>
-    </motion.section>
+    </div>
   );
 };
 
-export default FAQ;
+export default FAQ; 
